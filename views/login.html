@@ -1,0 +1,77 @@
+{% extends "layout.html" %} {% block main%}
+
+<div id="login" class="ui middle aligned center aligned grid">
+    <div class="column">
+        <h2 class="ui teal image header">
+
+            <div class="content" v-text="title">
+
+            </div>
+        </h2>
+        <form class="ui large form" :class="formClass">
+            <div class="ui stacked segment">
+                <div class="field">
+                    <div class="ui left icon input">
+                        <i class="user icon"></i>
+                        <input type="text" name="username" v-model="user.username" id="username" placeholder="E-mail address">
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="ui left icon input">
+                        <i class="lock icon"></i>
+                        <input type="password" name="password" v-model="user.password" id="password" placeholder="Password">
+                    </div>
+                </div>
+                <div class="ui fluid large teal submit button" @click="doSubmit">Login</div>
+            </div>
+
+            <div class="ui error message">
+                <ul>
+                    <li v-text="message"></li>
+
+                </ul>
+
+            </div>
+
+        </form>
+
+
+    </div>
+</div>
+
+<script>
+    var login = new Vue({
+        el: '#login',
+        data: {
+            title: '用户登陆',
+            user: {
+                username: null,
+                password: null
+            },
+            formClass: '',
+            message: null
+        },
+        methods: {
+            doSubmit: function() {
+                if (!this.user.username || !this.user.password) {
+                    this.formClass = " error";
+                    this.message = "请填写完整";
+                } else {
+                    axios.post('/login', this.user).then((rsp) => {
+
+                        console.log(rsp.data);
+                        if (rsp.data.retcode == 20000000) {
+                            window.location = '/';
+                        } else {
+                            this.formClass = " error";
+                            this.message = rsp.data.msg;
+                        }
+                    })
+
+
+                }
+            }
+        }
+    })
+</script>
+{% endblock %}
