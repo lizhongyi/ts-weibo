@@ -37,6 +37,7 @@ router.get('/', function(req, res, next) {
         timestamps: false
     });
     //查询一条数据
+
     (async() => {
         var lists = await weiboList();
         var comments = [];
@@ -47,7 +48,7 @@ router.get('/', function(req, res, next) {
                 //取得所有微博id  默认显示第一页，需要计算页码
                 var page = lists.data.cards[i].mblog.comments_count;
                 var pageCount = Math.ceil(page / 9);
-                console.log(pageCount);
+
                 for (j = 0; j < pageCount; j++) {
                     cmts.push(weiboComment(lists.data.cards[i].mblog.id, j));
                 }
@@ -56,17 +57,48 @@ router.get('/', function(req, res, next) {
 
 
         comments = await Promise.all(cmts);
-        console.log(comments);
-        res.end("10");
-        return;
+
+        var cmtlists = [];
+        var show_reply = function(data, id) {
+                for (item of data) {
+                    if (item.id == id) {
+                        return item.text;
+                    }
+                }
+            }
+            //博主回复的人
         for (let i = 0; i < comments.length; i++) {
             if (typeof comments[i] == 'object') {
 
 
 
                 for (var j = 0; j < comments[i].data.data.length; j++) {
-                    if (comments[i].data.data[j].user.screen_name == '唐史主任司马迁') {
-                        // console.log(comments[i].data.data[j].text);
+                    if (comments[i].data.data[j].user.screen_name == '唐史主任司马迁'
+                        //|| comments[i].data.data[j].text.indexOf("唐史主任司马迁") > -1
+                    ) {
+
+                        var reply_id = comments[i].data.data[j].reply_id;
+                        var rep_text = show_reply(comments[i].data.data, reply_id);
+                        comments[i].data.data[j].text += "<hr/>" + rep_text;
+                        console.log(comments[i].data.data[j]);
+                        cmtlists.push(comments[i].data.data[j]);
+
+                        //下一步从请求是hader里面取 微博ID
+
+
+
+
+
+
+
+
+
+                        // var reg = /@(.*?)\<\/a>/;
+                        // var sb = comments[i].data.data[j].text;
+                        // sb.replace(reg, function(s, value) {
+                        //     console.log(value);
+                        // });
+                        //console.log(comments[i].data.data);
                     }
 
                 }
@@ -75,9 +107,11 @@ router.get('/', function(req, res, next) {
 
             }
         }
-        //console.log(comments[0].data.data[0].user);
 
-        res.render('index', { title: '我们来爬一很好的微博', lists: lists.data.cards });
+
+        //console.log(comments[0].data.data[0].user);
+        // console.log(cmtlists);
+        res.render('index', { title: '我们来爬一很好的微博', lists: cmtlists });
 
     })();
 
