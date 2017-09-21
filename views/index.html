@@ -4,12 +4,24 @@
     <div class="content">
         <img class="right floated mini ui image" src="{{item.user.profile_image_url}}">
         <div class="header">{{item.user.screen_name}}</div>
-        <div class="meta">{{item.created_at}}</div>
+        <div class="meta">{{item.text}}</div>
         <div class="description">
-            {{item.text}}
+            {{item.content.text}}
+        </div>
+
+    </div>
+    {%for itemx in item.cmts%}
+    <div class="content">
+        <div class="description">
+            {{itemx.reply_text}}
+            <hr />
+            <a href="#">{{itemx.user.screen_name}}</a> {{itemx.text}}
+
         </div>
     </div>
-    <div class="extra content"><i class="comments  icon"></i> </div>
+
+    {%endfor%}
+
 </div>
 
 <div>
