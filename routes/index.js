@@ -16,7 +16,14 @@ var weiboer = require("../lib/model").weiboer;
 router.get('/', function(req, res, next) {
 
     (async() => {
-        var lists = await weibo.findAll({ limit: 30, order: 'id desc' });
+        var uid = req.query.uid || 2014433131;
+        var lists = await weibo.findAll({
+            limit: 30,
+            order: 'id desc',
+            where: {
+                uid: uid
+            }
+        });
         var items = [];
 
         for (item of lists) {
