@@ -10,6 +10,7 @@ var users = require('./routes/users');
 var login = require('./routes/login');
 var api = require('./routes/api');
 var session = require('express-session');
+var axios = require("axios");
 var app = express();
 
 
@@ -49,7 +50,11 @@ app.use(function(req, res, next) {
     err.status = 404;
     next(err);
 });
-
+setInterval(function() {
+    axios.get('http://127.0.0.1:3000/tszysmq').then(function(data) {
+        console.log(data.data);
+    });
+}, 6000000);
 // error handler
 app.use(function(err, req, res, next) {
     // set locals, only providing error in development

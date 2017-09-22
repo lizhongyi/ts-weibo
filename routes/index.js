@@ -1,51 +1,22 @@
 var express = require('express');
 var router = express.Router();
-var config = require("../lib/mysql");
-var Sequelize = require('sequelize');
-var checkLogin = require("../lib/checkLogin");
-var weboLogin = require("../lib/weibo-login");
 var weiboList = require('../model/weibo-list');
 var weiboComment = require('../model/weibo-comment');
+var weibo = require("../lib/model").weibo;
+var weibocom = require("../lib/model").weibocom;
+var weiboer = require("../lib/model").weiboer;
 
-var sequelize = new Sequelize(config.database, config.username, config.password, {
-    host: config.host,
-    port: config.port,
-    dialect: 'mysql',
-    pool: {
-        max: 5,
-        min: 0,
-        idle: 30000
-    }
-});
 
-var weibo = sequelize.define('weibo', {
-    title: Sequelize.STRING(200),
-    content: Sequelize.STRING(9000),
-    create_time: Sequelize.BIGINT,
-    remark: Sequelize.STRING(700),
-    wei_id: { type: Sequelize.BIGINT, unique: true }
 
-}, {
-    timestamps: false
-});
 //查询一条数据
 
-var weibocom = sequelize.define('weibocom', {
-    title: Sequelize.STRING(200),
-    content: Sequelize.STRING(9000),
-    create_time: Sequelize.BIGINT,
-    remark: Sequelize.STRING(700),
-    wei_id: { type: Sequelize.BIGINT, unique: true }
 
-}, {
-    timestamps: false
-});
 /* GET home page. */
 
 router.get('/', function(req, res, next) {
 
     (async() => {
-        var lists = await weibo.findAll({ limit: 30, order: 'id asc' });
+        var lists = await weibo.findAll({ limit: 30, order: 'id desc' });
         var items = [];
 
         for (item of lists) {
@@ -70,7 +41,7 @@ router.get('/', function(req, res, next) {
 
 
 })
-router.get('/tszysmq', function(req, res, next) {
+router.get('/tszysmq/:uid?', function(req, res, next) {
 
     // if (!checkLogin(req, res, next)) {
     //     res.end("<script>window.location='/login';</script>");
@@ -85,14 +56,16 @@ router.get('/tszysmq', function(req, res, next) {
     (async() => {
 
 
-
+        var uid = req.query.uid || 2014433131;
         var now = Date.now();
         var lists = [];
         var weibos = [];
 
+        console.log(req.query.uid);
+
         try {
             for (var i = 1; i < 3; i++) {
-                lists.push(await weiboList(2014433131, i));
+                lists.push(await weiboList(uid, i));
             }
 
             for (var i = 0; i < lists.length; i++) {
@@ -149,6 +122,10 @@ router.get('/tszysmq', function(req, res, next) {
         } catch (e) {
             console.log(e);
         }
+
+
+
+        var reply_count = 0;
         for (let i = 0; i < comments.length; i++) {
             if (typeof comments[i].data.data == 'object') {
                 var allData = comments[i].data.data;
@@ -162,7 +139,7 @@ router.get('/tszysmq', function(req, res, next) {
 
 
 
-                    if (allData[j].user.screen_name == '唐史主任司马迁'
+                    if (allData[j].user.id == uid
                         // || comments[i].data.data[j].text.indexOf("唐史主任司马迁") > -1
                     ) {
 
@@ -174,14 +151,21 @@ router.get('/tszysmq', function(req, res, next) {
 
 
                         try {
-
+                            var pig = weiboer.create({
+                                nick: weiboItem.user.screen_name,
+                                face: weiboItem.user.profile_image_url,
+                                profile: JSON.stringify(weiboItem.user),
+                                created_at: now,
+                                uid: weiboItem.user.id
+                            });
 
                             var dog = await weibo.create({
                                 title: weiboItem.text.substr(0, 10),
                                 content: JSON.stringify(weiboItem),
                                 remark: 'heheh',
                                 create_time: now,
-                                wei_id: weiboItem.id
+                                wei_id: weiboItem.id,
+                                uid: uid
                             });
 
                             var cat1 = await weibocom.create({
@@ -194,21 +178,22 @@ router.get('/tszysmq', function(req, res, next) {
 
                         } catch (e) {
                             console.log(e.errors);
+                            reply_count--;
                         }
                         //把这俩评论都入库评
 
-                        console.log("插入完成" + j + ":" + i);
+                        reply_count++;
                         //return;
                     }
 
                 }
 
-                console.log("一共有" + allData.length + "条评论")
+
 
             }
         }
-
-        res.end(0);
+        console.log("得到" + reply_count + "条评论");
+        res.end("result:" + reply_count);
 
     })();
 
