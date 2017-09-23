@@ -1,0 +1,24 @@
+{% extends "layout.html" %} {% block main%}
+
+
+<div class="ui items">
+    {%for item in weiboerList%}
+    <div class="item" onclick="window.location='/?uid={{item.uid}}'">
+        <a class="ui tiny image">
+            <img src="{{item.face}}">
+        </a>
+        <div class="content">
+            <a class="header">{{item.nick}}</a>
+            <div class="description">
+                <p> {{item.profile.description}}</p>
+            </div>
+        </div>
+    </div>
+    {%endfor%}
+
+</div>
+
+
+
+
+{% endblock %}

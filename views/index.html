@@ -1,5 +1,5 @@
 {% extends "layout.html" %} {% block main%} {%for item in lists%}
-<div class="ui card">
+<div class="ui card index">
 
     <div class="content">
         <img class="right floated mini ui image" src="{{item.user.profile_image_url}}">
@@ -19,13 +19,5 @@
 
         </div>
     </div>
-
-    {%endfor%}
-
 </div>
-
-<div>
-    {%endfor%}
-
-</div>
-{% endblock %}
+{%endfor%} {%endfor%} {% endblock %}

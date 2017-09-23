@@ -8,6 +8,7 @@ let nunjucks = require('nunjucks');
 var index = require('./routes/index');
 var users = require('./routes/users');
 var login = require('./routes/login');
+var bloger = require("./routes/bloger");
 var api = require('./routes/api');
 var session = require('express-session');
 var axios = require("axios");
@@ -43,6 +44,7 @@ app.use('/', index);
 app.use('/users', users);
 app.use('/', index);
 app.use('/login', login);
+app.use('/bloger', bloger);
 app.use('/api', api);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

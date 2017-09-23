@@ -16,8 +16,29 @@
 </head>
 
 <body>
-    <div class="ui container">
+
+    <div class="ui top  secondary  menu" style="backgrounD:#EEE;border-bottom:1px solid #ddd;color:#FFF">
+        <div class="item" style="font-size:16px">
+            <i class="weibo icon"></i>
+        </div>
+        <div class="right menu">
+            <div class="item">
+                <div class="ui icon input">
+                    <input type="text" placeholder="Search...">
+                    <i class="search link icon"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="ui container" style="padding-bottom:70px;">
+
         {%block main%}{%endblock%}
+
+    </div>
+    <div class="ui three bottom fixed item menu">
+        <a class="active item" href="/"><i class="home icon"></i> Home</a>
+        <a class="item" href="/bloger"><i class="users icon"></i>Weiboer</a>
+        <a class="item"><i class="video play icon"></i>My</a>
 
     </div>
 </body>
