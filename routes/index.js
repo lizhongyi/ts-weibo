@@ -19,12 +19,12 @@ router.get('/', function(req, res, next) {
 
     (async() => {
 
-
+        console.log(req.query);
 
         var uid = req.query.uid || 2014433131;
         var lists = await weibo.findAll({
-            limit: 30,
-            order: 'unix_time desc',
+            limit: 50,
+            order: 'unix_time desc,id desc',
             where: {
                 uid: uid
             }
@@ -245,5 +245,7 @@ router.get('/tszysmq/:uid?', function(req, res, next) {
 
 
 });
+router.get('/weibo/:uid?', function(req, res, next) {
 
+})
 module.exports = router;
