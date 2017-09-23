@@ -5,6 +5,8 @@ var weiboComment = require('../model/weibo-comment');
 var weibo = require("../lib/model").weibo;
 var weibocom = require("../lib/model").weibocom;
 var weiboer = require("../lib/model").weiboer;
+var weiboer = require("../lib/model").weiboer;
+var _fun = require("../lib/fun")
 
 
 
@@ -28,6 +30,7 @@ router.get('/', function(req, res, next) {
 
         for (item of lists) {
             var content = JSON.parse(item.content);
+            content.create_time = item.create_time;
             var cmts = [];
             var comments = await weibocom.findAll({
                 where: {
@@ -42,6 +45,12 @@ router.get('/', function(req, res, next) {
             content.cmts = cmts;
             items.push(content);
         }
+
+        items.map(function(item) {
+
+            item.created_at = _fun.real_time(item.created_at, item.create_time);
+
+        })
 
         res.render('index', { title: '我们来爬一很好的微博', lists: items });
     })();

@@ -12,7 +12,7 @@ var api = require('./routes/api');
 var session = require('express-session');
 var axios = require("axios");
 var app = express();
-
+var moment = require("moment");
 
 
 // view engine setup
@@ -56,6 +56,8 @@ setInterval(function() {
     });
 }, 6000000);
 // error handler
+
+console.log(moment().subtract(10, "hour").format("YYYY-MM-DD H:mm:ss"));
 app.use(function(err, req, res, next) {
     // set locals, only providing error in development
     res.locals.message = err.message;
