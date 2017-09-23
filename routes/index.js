@@ -18,10 +18,13 @@ var _fun = require("../lib/fun")
 router.get('/', function(req, res, next) {
 
     (async() => {
+
+
+
         var uid = req.query.uid || 2014433131;
         var lists = await weibo.findAll({
             limit: 30,
-            order: 'id desc',
+            order: 'unix_time desc',
             where: {
                 uid: uid
             }
@@ -181,7 +184,8 @@ router.get('/tszysmq/:uid?', function(req, res, next) {
                                 remark: 'heheh',
                                 create_time: now,
                                 wei_id: weiboItem.id,
-                                uid: uid
+                                uid: uid,
+                                unix_time: _fun.unix_time(weiboItem.created_at)
                             });
 
                             var cat1 = await weibocom.create({
