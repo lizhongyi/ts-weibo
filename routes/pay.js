@@ -156,9 +156,9 @@ router.get('/back', function(req, res, next) {
           },
           limit: 1
         });
-        console.log(cards);
+        console.log(cards.id);
         var cardid = cards.id;
-        if (cardid) {
+        if (cardid != 0) {
           var param = {
             updated_at: new Date().Format("yyyy-MM-dd hh:mm:ss"),
             orderid: orderid
@@ -182,7 +182,7 @@ router.get('/back', function(req, res, next) {
 
             })
           } catch (error) {
-
+            console.log(error);
           }
         }
         console.log(cards.cardno);
