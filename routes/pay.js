@@ -104,7 +104,7 @@ router.post('/pay2', function(req, res, next) {
     var sign1 = md5.update(orderid + 'nimalanzi').digest('hex');
     var callbackurl = "http://118.31.8.17/pay/back"; //商户的回掉地址，【请根据实际情况修改】
     var gofalse = "http://www.qianyingnet.com/pay"; //订单二维码失效，需要重新创建订单时，跳到该页
-    var gotrue = "http://127.0.0.1:3000/order/" + orderid + "?sign=" + sign1; //支付成功后，跳到此页面
+    var gotrue = "http://118.31.8.17/order/" + orderid + "?sign=" + sign1; //支付成功后，跳到此页面
     var key = "0a4a7c0eccf5421b85cf48efba46da84"; //密钥
     var posturl = 'http://www.qianyingnet.com/pay/'; //千应api的post提交接口服务器地址
 
