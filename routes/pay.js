@@ -144,7 +144,7 @@ router.get('/back', function(req, res, next) {
     console.log(req.query);
 
 
-    if (sign.toLowerCase() == $paramMd5.toLowerCase()) {
+    if (sign.toLowerCase() == paramMd5.toLowerCase()) {
       if (status == "1" || status == "5" || status == "6") {
 
         //可在此处增加操作数据库语句，实现自动下发，也可在其他文件导入该php，写入数据库
