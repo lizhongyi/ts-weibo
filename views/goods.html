@@ -1,0 +1,22 @@
+ {% extends "layout.html" %} {% block main%}
+<div class="ui card index">
+
+  <form action="/pay/pay2" method="post">
+
+    <input type="radio" name="goods" value="50" id="g1">
+    <label for="g1">50赞助币</label>
+
+    <input type="radio" name="goods" value="100" id="g2">
+    <label for="g2">100赞助币</label>
+
+    <input type="radio" name="goods" value="300" id="g3">
+    <label for="g3">300赞助币</label>
+    <input type="radio" name="goods" value="1000" id="g4">
+    <label for="g4">1000赞助币</label>
+    <hr> 角色名称
+    <input name="username" id="username" />
+    <button type="submit">提交</button>
+  </form>
+
+</div>
+{% endblock %}
