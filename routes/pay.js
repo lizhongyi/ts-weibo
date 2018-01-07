@@ -156,28 +156,29 @@ router.get('/back', function(req, res, next) {
           },
           limit: 1
         });
+        console.log(cards);
         var cardid = cards.id;
         if (cardid) {
           var param = {
-            'updated_at': new Date().Format("yyyy-MM-dd hh:mm:ss"),
-            'orderid': orderid
+            updated_at: new Date().Format("yyyy-MM-dd hh:mm:ss"),
+            orderid: orderid
           }
 
           var param1 = {
-            'updated_at': new Date().Format("yyyy-MM-dd hh:mm:ss"),
-            'status': 1
+            updated_at: new Date().Format("yyyy-MM-dd hh:mm:ss"),
+            status: 1
           }
           try {
             var upcards = card.update({
               param,
 
-              where: { 'id': { eq: cardid } }
+              where: { id: cardid }
 
             })
 
             var uporder = order.update({
               param1,
-              where: { 'orderid': { eq: orderid } }
+              where: { orderid: orderid }
 
             })
           } catch (error) {
