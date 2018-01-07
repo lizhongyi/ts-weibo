@@ -159,27 +159,22 @@ router.get('/back', function(req, res, next) {
         console.log(cards.id);
         var cardid = cards.id;
         if (cardid != 0) {
-          var param = {
-            updated_at: new Date().Format("yyyy-MM-dd hh:mm:ss"),
-            orderid: orderid
-          }
 
-          var param1 = {
-            updated_at: new Date().Format("yyyy-MM-dd hh:mm:ss"),
-            status: 1
-          }
+
+
           try {
             var upcards = card.update({
-              param,
-
+              updated_at: new Date().Format("yyyy-MM-dd hh:mm:ss"),
+              orderid: orderid
+            }, {
               where: { id: cardid }
-
             })
 
             var uporder = order.update({
-              param1,
+              updated_at: new Date().Format("yyyy-MM-dd hh:mm:ss"),
+              status: 1
+            }, {
               where: { orderid: orderid }
-
             })
           } catch (error) {
             console.log(error);
@@ -198,5 +193,4 @@ router.get('/back', function(req, res, next) {
     }
     res.send("0");
   })();
-})
-module.exports = router;
+}) module.exports = router;
