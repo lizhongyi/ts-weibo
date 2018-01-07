@@ -193,4 +193,5 @@ router.get('/back', function(req, res, next) {
     }
     res.send("0");
   })();
-}) module.exports = router;
+})
+module.exports = router;
