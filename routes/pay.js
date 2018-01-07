@@ -195,7 +195,7 @@ router.get('/back', function(req, res, next) {
     } else {
       console.log("签名无效，视为无效数据!");
     }
-    res.send(0);
+    res.send("0");
   })();
 })
 module.exports = router;
