@@ -74,7 +74,7 @@ router.post('/pay2', function(req, res, next) {
     var goods = req.body.goods;
     var username = req.body.username;
     console.log(username);
-    if (goods == '50' || goods == '100' || goods == '300' || goods == '1000') {
+    if (goods == '50' || goods == '100' || goods == '300' || goods == '500' || goods == '1000') {
       if (!username) {
         res.render('pay2', { msg: "角色不能为空" });
         return false;
@@ -118,7 +118,7 @@ router.post('/pay2', function(req, res, next) {
 
 
     var PostUrl = posturl + "?" + parma + "&sign=" + parma_key + "&gofalse=" + gofalse + "&gotrue=" + gotrue + "&charset=" + charset + "&token=" + token; //生成指定网址
-    res.render('pay2', { url: PostUrl, orderid: orderid, goods: goods, username: req.body.username });
+    res.render('pay2', { url: PostUrl, orderid: orderid, goods: goods, username: req.body.username, msg: 0 });
   })();
 });
 
@@ -165,14 +165,16 @@ router.get('/back', function(req, res, next) {
           try {
             var upcards = card.update({
               updated_at: new Date().Format("yyyy-MM-dd hh:mm:ss"),
-              orderid: orderid
+              orderid: orderid,
+              status: 1
             }, {
               where: { id: cardid }
             })
 
             var uporder = order.update({
               updated_at: new Date().Format("yyyy-MM-dd hh:mm:ss"),
-              status: 1
+              status: 1,
+              cardid: cardid
             }, {
               where: { orderid: orderid }
             })

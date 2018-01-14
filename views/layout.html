@@ -2,45 +2,47 @@
 <html lang="zh-cn">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>微博系统</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>微博系统</title>
 
-    <link href="https://cdn.bootcss.com/semantic-ui/2.2.12/semantic.min.css" rel="stylesheet">
-    <link href="https://cdn.bootcss.com/semantic-ui/2.2.13/components/form.min.css" rel="stylesheet">
-    <link rel="stylesheet" href='/stylesheets/style.css'>
-    <script src="https://cdn.bootcss.com/vue/2.4.2/vue.min.js"></script>
-    <script src="https://cdn.bootcss.com/axios/0.16.2/axios.min.js"></script>
+  <link href="https://cdn.bootcss.com/semantic-ui/2.2.12/semantic.min.css" rel="stylesheet">
+  <link href="https://cdn.bootcss.com/semantic-ui/2.2.13/components/form.min.css" rel="stylesheet">
+  <link rel="stylesheet" href='/stylesheets/style.css'>
+  <script src="https://cdn.bootcss.com/vue/2.4.2/vue.min.js"></script>
+  <script src="https://cdn.bootcss.com/axios/0.16.2/axios.min.js"></script>
 
+  <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
+  <script src="https://semantic-ui.com/dist/semantic.min.js"></script>
 </head>
 
 <body>
 
-    <div class="ui top  secondary  menu" style="backgrounD:#EEE;border-bottom:1px solid #ddd;color:#FFF">
-        <div class="item" style="font-size:16px">
-            <i class="weibo icon"></i>
+  <div class="ui top  secondary  menu" style="backgrounD:#EEE;border-bottom:1px solid #ddd;color:#FFF">
+    <div class="item" style="font-size:16px">
+      <i class="weibo icon"></i>
+    </div>
+    <div class="right menu">
+      <div class="item">
+        <div class="ui icon input">
+          <input type="text" placeholder="Search...">
+          <i class="search link icon"></i>
         </div>
-        <div class="right menu">
-            <div class="item">
-                <div class="ui icon input">
-                    <input type="text" placeholder="Search...">
-                    <i class="search link icon"></i>
-                </div>
-            </div>
-        </div>
+      </div>
     </div>
-    <div class="ui container" style="padding-bottom:70px;">
+  </div>
+  <div class="ui container" style="padding-bottom:70px;">
 
-        {%block main%}{%endblock%}
+    {%block main%}{%endblock%}
 
-    </div>
-    <div class="ui three bottom fixed item menu">
-        <a class="active item" href="/"><i class="home icon"></i> Home</a>
-        <a class="item" href="/bloger"><i class="users icon"></i>Weiboer</a>
-        <a class="item"><i class="video play icon"></i>My</a>
+  </div>
+  <div class="ui three bottom fixed item menu">
+    <a class="active item" href="/"><i class="home icon"></i> Home</a>
+    <a class="item" href="/bloger"><i class="users icon"></i>Weiboer</a>
+    <a class="item"><i class="video play icon"></i>My</a>
 
-    </div>
+  </div>
 </body>
 
 </html>

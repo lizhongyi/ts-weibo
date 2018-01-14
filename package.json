@@ -25,7 +25,8 @@
         "sequelize": "^3.30.4",
         "serve-favicon": "^2.4.3",
         "session": "^0.1.0",
-        "utility": "^1.12.0"
+        "utility": "^1.12.0",
+        "webpack": "^3.10.0"
     },
     "devDependencies": {
         "nodemon": "^1.11.0"

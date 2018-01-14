@@ -1,21 +1,39 @@
-<!DOCTYPE html>
-<html>
+{% extends "layout.html" %} {% block main%}
+<div class="ui  segment">
+  {% if msg != 0 %}
+  <div class="ui warning message">
+    <i class="close icon"></i>
+    <div class="header">{{msg}} </div>
+  </div>
+  {%endif%}
+  <table class="ui celled table">
+    <thead>
+      <tr>
+        <th colspan="2">长春传奇3 订单详情 </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><i class="file outline icon"></i> 订单号 </td>
+        <td>{{orderid}}</td>
 
-<head>
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>pay2</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+      </tr>
+      <tr>
+        <td><i class="file outline icon"></i> 商品名称 </td>
+        <td>{{goods}} 赞助币</td>
 
-</head>
+      </tr>
+      <tr>
+        <td><i class="user icon"></i> 角色名称 </td>
+        <td>{{username}}</td>
 
-<body>
-  <h1>{{msg}}</h1>
-  <h2>订单号：{{orderid}}</h2>
-  <h2>商品名称：{{goods}}赞助币</h2>
-  <h2>角色名称：{{username}}</h2>
-  <h2><a href="{{url}}">去支付</a></h2>
+      </tr>
+      <tr>
+        <td> <a class="ui green button" href="{{url}}">去支付</a> </td>
+        <td></td>
 
-</body>
 
-</html>
+    </tbody>
+  </table>
+</div>
+{% endblock %}

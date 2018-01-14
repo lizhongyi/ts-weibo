@@ -1,22 +1,55 @@
  {% extends "layout.html" %} {% block main%}
-<div class="ui card index">
 
+<div class="ui  segment">
   <form action="/pay/pay2" method="post">
+    <div class="ui form">
+      <div class="grouped fields">
+        <div class="field">
+          <div class="ui radio checkbox">
+            <input type="radio" name="goods" value="50" tabindex="0" class="hidden1">
+            <label>50 赞助币</label>
+          </div>
+        </div>
+        <div class="field">
+          <div class="ui radio checkbox">
+            <input type="radio" name="goods" value="100" tabindex="0" class="hidden1">
+            <label>100赞助币</label>
+          </div>
+        </div>
+        <div class="field">
+          <div class="ui radio checkbox">
+            <input type="radio" name="goods" value="300" tabindex="0" class="hidden1">
+            <label>200 赞助币</label>
+          </div>
+        </div>
+        <div class="field">
+          <div class="ui radio checkbox">
+            <input type="radio" name="goods" value="500" tabindex="0" class="hidden1">
+            <label>300 赞助币</label>
+          </div>
+        </div>
 
-    <input type="radio" name="goods" value="50" id="g1">
-    <label for="g1">50赞助币</label>
+        <div class="field">
+          <div class="ui radio checkbox">
+            <input type="radio" name="goods" value="500" tabindex="0" class="hidden1">
+            <label>500 赞助币</label>
+          </div>
+        </div>
 
-    <input type="radio" name="goods" value="100" id="g2">
-    <label for="g2">100赞助币</label>
+        <div class="field">
+          <div class="ui radio checkbox">
+            <input type="radio" name="goods" value="1000" tabindex="0" class="hidden1">
+            <label>1000 赞助币</label>
+          </div>
+        </div>
+        <div class="field">
+          <label>用户名</label>
+          <input name="username" id="username" />
 
-    <input type="radio" name="goods" value="300" id="g3">
-    <label for="g3">300赞助币</label>
-    <input type="radio" name="goods" value="1000" id="g4">
-    <label for="g4">1000赞助币</label>
-    <hr> 角色名称
-    <input name="username" id="username" />
-    <button type="submit">提交</button>
+        </div>
+      </div>
+    </div>
+    <button class="ui submit primary button ">提交订单</button>
   </form>
-
 </div>
 {% endblock %}
