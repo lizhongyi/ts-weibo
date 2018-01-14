@@ -1,12 +1,12 @@
  {% extends "layout.html" %} {% block main%}
 
 <div class="ui  segment">
-  <form action="/pay/pay2" method="post">
+  <form action="/pay/pay2" method="post" onsubmit="checkform()">
     <div class="ui form">
       <div class="grouped fields">
         <div class="field">
           <div class="ui radio checkbox">
-            <input type="radio" name="goods" value="50" tabindex="0" class="hidden1">
+            <input type="radio" name="goods" value="50" checked tabindex="0" class="hidden1">
             <label>50 赞助币</label>
           </div>
         </div>
@@ -52,4 +52,16 @@
     <button class="ui submit primary button ">提交订单</button>
   </form>
 </div>
+
+<script>
+  function checkform() {
+    var money = document.getElementById("username").value;
+    if (money == "") {
+      alert("请填写用户名");
+      return false;
+    } else {
+      return true;
+    }
+  }
+</script>
 {% endblock %}

@@ -3,9 +3,9 @@
   {% if msg != 0 %}
   <div class="ui warning message">
     <i class="close icon"></i>
-    <div class="header">{{msg}} </div>
+    <div class="header">{{msg}} <a class="ui button" herf="javascript:;" onclick="window.history.go(-1)">返回</a> </div>
   </div>
-  {%endif%}
+  {%else%}
   <table class="ui celled table">
     <thead>
       <tr>
@@ -35,5 +35,7 @@
 
     </tbody>
   </table>
+  {%endif%}
 </div>
+
 {% endblock %}
