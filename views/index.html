@@ -1,24 +1,28 @@
-{% extends "layout.html" %} {% block main%} {%for item in lists%}
+{% extends "layout.html" %} {% block main%} 
 <div class="ui card index">
 
     <div class="content">
-        <img class="right floated mini ui image" src="{{item.user.profile_image_url}}">
-        <div class="header">{{item.user.screen_name}}</div>
-        <div class="meta">{{item.created_at}}</div>
-        <div class="description">
-            {{item.text}}
-        </div>
+       
+        <div class="ui middle aligned divided list">
+            <div class="item">
+              <div class="content">
+                <a href="{{client}}" class="header">高速完整客户端下载</a>
+              </div>
+            </div>
+            <div class="item">
+             
+              <div class="content">
+                <a href="{{dlq}}" class="header">登录器下载</a>
+              </div>
+            </div>
+            <div class="item">
+                <div class="content">
+                  <a href="/goods" class="header">赞助服务器</a>
+                </div>
 
     </div>
-    {%for itemx in item.cmts%}
-    <div class="content">
-        <div class="description">
-            {{itemx.reply_text}}
-            <hr />
-            <a href="#">{{itemx.user.screen_name}}</a> {{itemx.text}}
-
-        </div>
-    </div>
-    {%endfor%}
+   <div class="contentt">
+       {{info}}
+   </div>
 </div>
-{%endfor%} {% endblock %}
+{% endblock %}

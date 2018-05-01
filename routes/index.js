@@ -7,7 +7,8 @@ var weibocom = require("../lib/model").weibocom;
 var weiboer = require("../lib/model").weiboer;
 var weiboer = require("../lib/model").weiboer;
 var _fun = require("../lib/fun")
-
+var axios = require("axios")
+var cheerio = require("cheerio")
 
 
 //查询一条数据
@@ -19,44 +20,17 @@ router.get('/', function(req, res, next) {
 
   (async() => {
 
-/*    console.log(req.query);
-
-    var uid = req.query.uid || 2014433131;
-    var lists = await weibo.findAll({
-      limit: 50,
-      order: 'unix_time desc,id desc',
-      where: {
-        uid: uid
-      }
-    });
-    var items = [];
-
-    for (item of lists) {
-      var content = JSON.parse(item.content);
-      content.create_time = item.create_time;
-      var cmts = [];
-      var comments = await weibocom.findAll({
-        where: {
-          title: content.id
-        }
-      });
-
-      console.log(comments.length);
-      for (itemx of comments) {
-        cmts.push(JSON.parse(itemx.content));
-      }
-      content.cmts = cmts;
-      items.push(content);
-    }
-
-    items.map(function(item) {
-
-      item.created_at = _fun.real_time(item.created_at, item.create_time);
-
-    })
-<<<<<<< HEAD
-*/
-    res.render('index', { title: '我们来爬一很好的微博' });
+    let { data }  = await axios.get('https://cloud.189.cn/t/A73InyQVR3mm')
+    var $ = cheerio.load(data)
+    let client = $("input.downloadUrl").val()
+    let dlq = await axios.get('https://cloud.189.cn/t/iyeMzq7nURbu')
+    dlq = dlq.data
+    var $ = cheerio.load(dlq)
+    dlq = $("input.downloadUrl").val()
+    var infos = await axios.get("https://www.jianshu.com/p/3b14a4340d2a")
+    var $ = cheerio.load(infos.data)
+    let info = $('div.show-content').html()
+    res.render('index', { title: '我们来爬一很好的微博',client:client,dlq:dlq,info:info});
    // return items
   })();
 
