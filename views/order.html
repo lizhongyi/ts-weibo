@@ -1,19 +1,12 @@
-<!DOCTYPE html>
-<html>
+{% extends "layout.html" %} {% block main%}
+<div class="content">
+  <div class="header">卡号密码</div>
+  <div class="meta"></div>
+  <div class="description">
+    <h1>{{msg}}</h1>
+    <h2>卡号:{{cards.cardno}}</h2>
+    <h2>密码:{{cards.cardpass}}</h2>
+  </div>
 
-<head>
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>pay2</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-</head>
-
-<body>
-  <h1>{{msg}}</h1>
-  <h2>卡号:{{cards.cardno}}</h2>
-  <h2>密码:{{cards.cardpass}}</h2>
-
-</body>
-
-</html>
+</div>
+{% endblock %}
