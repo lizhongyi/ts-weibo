@@ -57,13 +57,14 @@ app.use(function(req, res, next) {
   err.status = 404;
   next(err);
 });
+/*
 setInterval(function() {
   axios.get('http://127.0.0.1:3000/tszysmq').then(function(data) {
     console.log(data.data);
   });
 }, 6000);
 // error handler
-
+*/
 console.log(moment().subtract(10, "hour").format("YYYY-MM-DD H:mm:ss"));
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development
