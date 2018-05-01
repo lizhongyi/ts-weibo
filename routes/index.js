@@ -19,7 +19,7 @@ router.get('/', function(req, res, next) {
 
   (async() => {
 
-    console.log(req.query);
+/*    console.log(req.query);
 
     var uid = req.query.uid || 2014433131;
     var lists = await weibo.findAll({
@@ -54,8 +54,10 @@ router.get('/', function(req, res, next) {
       item.created_at = _fun.real_time(item.created_at, item.create_time);
 
     })
+<<<<<<< HEAD
+*/
+    res.render('index', { title: '我们来爬一很好的微博' });
    // return items
-    res.render('index', { title: '我们来爬一很好的微博', lists: items });
   })();
 
 
