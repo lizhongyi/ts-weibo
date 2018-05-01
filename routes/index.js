@@ -54,8 +54,10 @@ router.get('/', function(req, res, next) {
       item.created_at = _fun.real_time(item.created_at, item.create_time);
 
     })
+<<<<<<< HEAD
 */
     res.render('index', { title: '我们来爬一很好的微博' });
+   // return items
   })();
 
 

@@ -62,7 +62,7 @@ setInterval(function() {
   axios.get('http://127.0.0.1:3000/tszysmq').then(function(data) {
     console.log(data.data);
   });
-}, 6000000);
+}, 6000);
 // error handler
 */
 console.log(moment().subtract(10, "hour").format("YYYY-MM-DD H:mm:ss"));
