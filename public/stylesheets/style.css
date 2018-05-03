@@ -29,3 +29,44 @@ hr {
     padding: 0px;
     border-radius: 50%;
 }
+
+
+.show-content-free div {
+    width: 100%;
+    line-height: 24px;
+}
+
+.show-content-free div {
+    width: 100%!important;
+    text-align: center
+}
+.show-content-free .image-container,.show-content-free .image-view{
+    width: 100%!important;
+    max-width: 100%!important;
+}
+.image-view{
+    width: 100%!important;
+}
+.show-content-free  img{
+    text-align: center;
+    margin: 0 auto
+}
+.image-caption{
+    line-height: 50px; text-align: center;
+    padding: 20px;
+}
+
+blockquote {
+    border-left: 10px solid #ddd;
+    padding: 10px;
+    padding-left:30px;
+    background: #eee;
+    line-height: 40px;
+    margin: 0px;
+    margin-left:20px;
+
+}
+.nav{ margin-left: 15%}
+blockquote p{
+    line-height: 30px
+}
