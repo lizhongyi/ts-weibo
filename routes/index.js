@@ -22,11 +22,11 @@ router.get('/', function(req, res, next) {
 
     let { data }  = await axios.get('https://cloud.189.cn/t/A73InyQVR3mm')
     var $ = cheerio.load(data)
-    let client = $("input.downloadUrl").val()
-    let dlq = await axios.get('https://cloud.189.cn/t/iyeMzq7nURbu')
+    let client = 'https:'+$("input.downloadUrl").val()
+    let dlq = await axios.get('https://cloud.189.cn/t/NvmYj22qEvA3')
     dlq = dlq.data
     var $ = cheerio.load(dlq)
-    dlq = $("input.downloadUrl").val()
+    dlq = 'https:'+$("input.downloadUrl").val()
     var infos = await axios.get("https://www.jianshu.com/p/3b14a4340d2a")
     var $ = cheerio.load(infos.data)
     let info = $('div.show-content').html()
