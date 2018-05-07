@@ -20,10 +20,10 @@ router.get('/', function(req, res, next) {
 
   (async() => {
 
-    let { data }  = await axios.get('https://cloud.189.cn/t/A73InyQVR3mm')
+    let { data }  = await axios.get('https://cloud.189.cn/t/rmYZfu6NFjaa')
     var $ = cheerio.load(data)
     let client = 'https:'+$("input.downloadUrl").val()
-    let dlq = await axios.get('https://cloud.189.cn/t/NvmYj22qEvA3')
+    let dlq = await axios.get('https://cloud.189.cn/t/rEvQzezUJzui')
     dlq = dlq.data
     var $ = cheerio.load(dlq)
     dlq = 'https:'+$("input.downloadUrl").val()
