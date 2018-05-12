@@ -45,7 +45,7 @@ router.get('/ver', function(req, res, next) {
         var $ = cheerio.load(infos.data)
         let info = $('div.show-content')
             .html()
-        res.render('index', { title: '我们来爬一很好的微博', client: client, dlq: dlq, info: info });
+        res.render('ver', { title: '我们来爬一很好的微博', client: client, dlq: dlq, info: info });
         // return items
     })();
 })
