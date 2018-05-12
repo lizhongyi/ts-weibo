@@ -1,37 +1,65 @@
-{% extends "layout.html" %} {% block main%} 
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+    <meta charset="UTF-8">
+    <title>传奇3公益服，长春传奇3</title>
+    <meta name="keyword" content="传奇私服，传奇3私服，热血传奇">
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        
+        body {}
+        
+        .main {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            background: url(../public/img/bg-pn8-8.png) no-repeat top center;
+            background-size: 100% 100%;
+            width: 100%
+        }
+        
+        .nav {
+            height: 180px;
+            padding-top: 60px;
+            margin-left: 200px;
+        }
+        
+        .nav a {
+            display: block;
+            color: #FFF;
+            line-height: 50px;
+            float: left;
+            text-align: center;
+            text-decoration: none;
+            margin-left: 20px;
+            padding: 0px 20px;
+            background: rgba(0, 0, 0, .5);
+        }
+    </style>
+</head>
 
-    <div class="content">
-       <h1 align="center">欢迎来到长春传奇3</h1>
-      
-            <div class="item nav" style="float: left;">
-            
+<body>
+    <div class="main">
+        <div class="header">
+            <div class="nav">
                 <a href="{{client}}" class="header">高速完整客户端下载</a>
-             
-            </div>
-            <div class="item nav" style="float: left;">
-             
-            
                 <a href="{{dlq}}" class="header">登录器下载</a>
-            
+                <a href="/goods" class="header">赞助服务器</a>
+                <a href="/ver" class="header">版本介绍</a>
+                <a href="https://www.jianshu.com/p/3b14a4340d2a" class="header">玩家论坛</a>
             </div>
-            <div class="item nav" style="float: left;">
-             
-                  <a href="/goods" class="header">赞助服务器</a>
-               
-            </div>  
-    
-   <div class="content">
-       {{info}}
-   </div>
+        </div>
+        <div class="content">
+
+        </div>
 
 
-<script>
-   
-        $(".show-content-free img").each(function(index,item){
-            $(item).attr("src",$(item).attr('data-original-src'))
-        })
-       $(".image-container-fill").remove()
-    
-</script>
-{% endblock %}
+</body>
+
+</html>

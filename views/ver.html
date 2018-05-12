@@ -1,0 +1,35 @@
+{% extends "layout.html" %} {% block main%}
+
+
+<div class="content">
+    <h1 align="center">欢迎来到长春传奇3</h1>
+
+    <div class="item nav" style="float: left;">
+
+        <a href="{{client}}" class="header">高速完整客户端下载</a>
+
+    </div>
+    <div class="item nav" style="float: left;">
+
+
+        <a href="{{dlq}}" class="header">登录器下载</a>
+
+    </div>
+    <div class="item nav" style="float: left;">
+
+        <a href="/goods" class="header">赞助服务器</a>
+
+    </div>
+
+    <div class="content">
+        {{info}}
+    </div>
+
+
+    <script>
+        $(".show-content-free img").each(function(index, item) {
+            $(item).attr("src", $(item).attr('data-original-src'))
+        })
+        $(".image-container-fill").remove()
+    </script>
+    {% endblock %}
