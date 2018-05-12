@@ -26,7 +26,13 @@ router.get('/', function(req, res, next) {
         var $ = cheerio.load(dlq)
         dlq = 'https:' + $("input.downloadUrl")
             .val()
-        res.render('index', { title: '我们来爬一很好的微博', client: client, dlq: dlq });
+
+        //let seo = {}
+        let seoData = await axios.get('http://127.0.0.1:3000/img/seo.txt')
+       console.log(seoData.data.title)
+
+
+        res.render('index', { title: '我们来爬一很好的微博', client: client, dlq: dlq,seo:seoData.data});
         // return items
     })();
 })
