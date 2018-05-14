@@ -17,7 +17,7 @@ var cheerio = require("cheerio")
     /* GET home page. */
 router.get('/', function(req, res, next) {
     (async() => {
-        let { data } = await axios.get('https://cloud.189.cn/t/rmYZfu6NFjaa')
+        let { data } = await axios.get('https://cloud.189.cn/t/UJ32qaBBfqUv')
         var $ = cheerio.load(data)
         let client = 'https:' + $("input.downloadUrl")
             .val()
@@ -26,13 +26,10 @@ router.get('/', function(req, res, next) {
         var $ = cheerio.load(dlq)
         dlq = 'https:' + $("input.downloadUrl")
             .val()
-
         //let seo = {}
         let seoData = await axios.get('http://127.0.0.1:3000/img/seo.txt')
-       console.log(seoData.data.title)
-
-
-        res.render('index', { title: '我们来爬一很好的微博', client: client, dlq: dlq,seo:seoData.data});
+        console.log(seoData.data.title)
+        res.render('index', { title: '我们来爬一很好的微博', client: client, dlq: dlq, seo: seoData.data });
         // return items
     })();
 })
