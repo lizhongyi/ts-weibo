@@ -17,17 +17,17 @@ var cheerio = require("cheerio")
     /* GET home page. */
 router.get('/', function(req, res, next) {
     (async() => {
-        let { data } = await axios.get('https://cloud.189.cn/t/UJ32qaBBfqUv')
+        let seoData = await axios.get('http://127.0.0.1:3000/img/seo.txt')
+        let { data } = await axios.get(seoData.data.client_url)
         var $ = cheerio.load(data)
         let client = 'https:' + $("input.downloadUrl")
             .val()
-        let dlq = await axios.get('https://cloud.189.cn/t/rEvQzezUJzui')
+        let dlq = await axios.get(seoData.data.dlq_url)
         dlq = dlq.data
         var $ = cheerio.load(dlq)
         dlq = 'https:' + $("input.downloadUrl")
             .val()
-        //let seo = {}
-        let seoData = await axios.get('http://127.0.0.1:3000/img/seo.txt')
+            //let seo = {}
         console.log(seoData.data.title)
         res.render('index', { title: '我们来爬一很好的微博', client: client, dlq: dlq, seo: seoData.data });
         // return items
